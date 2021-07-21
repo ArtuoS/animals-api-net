@@ -9,7 +9,8 @@ namespace AnimalAPI.Models
 {
     public class Animal
     {
-        public int Id { get; set; }
+        [Key]
+        public long Id { get; set; }
 
         [Required]
         [StringLength(60, MinimumLength =3)]

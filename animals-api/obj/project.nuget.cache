@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Idfv+isu96q/To9DqWMrycu5jLcmCFL+5jJJWCrEGMfIu9nsNLSst39F5fGtxbNRCu0xcrp0xfpiu3QhYE9bqA==",
+  "dgSpecHash": "2B6Rjk1fD+tCba8bkfXYq2y3RcGfGwWG3KT01Q7G4cW4Sdfvd+LhLTQL4CO6gEg+d8U03P7EmXtUxQkXISVlcQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\animals-api.csproj",
+  "projectFilePath": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\AnimalAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.8\\microsoft.entityframeworkcore.5.0.8.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.8\\microsoft.entityframeworkcore.abstractions.5.0.8.nupkg.sha512",

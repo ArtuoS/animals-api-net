@@ -743,9 +743,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\animals-api.csproj",
-      "projectName": "animals-api",
-      "projectPath": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\animals-api.csproj",
+      "projectUniqueName": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\AnimalAPI.csproj",
+      "projectName": "AnimalAPI",
+      "projectPath": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\AnimalAPI.csproj",
       "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\arthu\\source\\repos\\animals-api\\animals-api\\obj\\",
       "projectStyle": "PackageReference",

@@ -2,6 +2,7 @@
 using AnimalAPI.Common;
 using AnimalAPI.Entities;
 using AnimalAPI.Models;
+using AnimalAPI.Common.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ using System.Transactions;
 
 namespace AnimalAPI.BusinessLayer
 {
-    public class AnimalBLL : IAnimalBLL
+    public class AnimalBll : IAnimalBll
     {
         private readonly AnimalContext _context;
 
-        public AnimalBLL(AnimalContext context)
+        public AnimalBll(AnimalContext context)
         {
             _context = context;
         }
@@ -23,38 +24,73 @@ namespace AnimalAPI.BusinessLayer
         {
             try
             {
+                Animal animal = null;
                 using (var context = _context)
                 {
-                    Animal animal = new Animal()
-                    {
-                        Name = item.Name,
-                        Alimentation = item.Alimentation,
-                        Genre = item.Genre
-                    };
+                    if (item.Name.IsValidString() || item.Genre.IsValidString())
+                        return new Response<Animal>().FailedModel();
 
-                    await _context.Animals.AddAsync(animal);
-                    await _context.SaveChangesAsync();
+                    animal.Name = item.Name;
+                    animal.Alimentation = item.Alimentation;
+                    animal.Genre = item.Genre;
+
+                    await context.Animals.AddAsync(animal);
+                    await context.SaveChangesAsync();
                 }
 
-                return new Response<Animal>()
-                {
-                    Success = true
-                };
+                return new Response<Animal>().SuccessModel();
             }
-            catch (Exception)
+            catch
             {
-                throw new Exception();
+                return new Response<Animal>().FailedModel();
             }
         }
 
         public async Task<Response<Animal>> Delete(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Animal animal = null;
+
+                using (var context = _context)
+                {
+                    animal = await context.Animals.FindAsync(id);
+
+                    if (!animal.Id.IsValidId())
+                        return new Response<Animal>().FailedModel();
+
+                    context.Animals.Attach(animal);
+                    context.Animals.Remove(animal);
+
+                    await context.SaveChangesAsync();
+                }
+
+                return new Response<Animal>().SuccessModel(animal);
+            }
+            catch
+            {
+                return new Response<Animal>().FailedModel();
+            }
         }
 
         public async Task<ResponseMany<Animal>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var context = _context)
+                {
+                    List<Animal> animals = context.Animals.ToList();
+
+                    if (!animals.Any())
+                        return new ResponseMany<Animal>().FailedModel();
+
+                    return new ResponseMany<Animal>().SuccessModel(animals);
+                }
+            }
+            catch
+            {
+                return new ResponseMany<Animal>().FailedModel();
+            }
         }
 
         public async Task<Response<Animal>> GetById(long id)

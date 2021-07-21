@@ -17,9 +17,9 @@ namespace AnimalAPI.Controllers
     public class AnimalsController : ControllerBase
     {
         private readonly AnimalContext _context;
-        private readonly IAnimalBLL _animalBll;
+        private readonly IAnimalBll _animalBll;
 
-        public AnimalsController(AnimalContext context, IAnimalBLL animalBll)
+        public AnimalsController(AnimalContext context, IAnimalBll animalBll)
         {
             _context = context;
             _animalBll = animalBll;

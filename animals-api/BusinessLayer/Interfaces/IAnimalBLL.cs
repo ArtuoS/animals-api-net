@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalAPI.BusinessLayer.Interfaces
 {
-    public interface IAnimalBLL : IBasicCrud<Animal>
+    public interface IAnimalBll : IBasicCrud<Animal>
     {
     }
 }

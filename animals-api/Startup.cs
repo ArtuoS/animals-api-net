@@ -1,6 +1,9 @@
 using AnimalAPI.BusinessLayer;
 using AnimalAPI.BusinessLayer.Interfaces;
+using AnimalAPI.Common;
+using AnimalAPI.Common.Interfaces;
 using AnimalAPI.Entities;
+using AnimalAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace animals_api
+namespace AnimalAPI
 {
     public class Startup
     {
@@ -32,12 +35,12 @@ namespace animals_api
         {
             services.AddDbContext<AnimalContext>(opt => opt.UseInMemoryDatabase(databaseName: "animal_db"));
 
-            services.AddTransient<IAnimalBLL, AnimalBLL>();
+            services.AddTransient<IAnimalBll, AnimalBll>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "animals_api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AnimalAPI", Version = "v1" });
             });
         }
 
@@ -48,7 +51,7 @@ namespace animals_api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "animals_api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalAPI v1"));
             }
 
             app.UseHttpsRedirection();
