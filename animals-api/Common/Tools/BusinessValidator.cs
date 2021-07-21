@@ -7,7 +7,7 @@ namespace AnimalAPI.Common.Tools
 {
     public static class BusinessValidator
     {
-        public static bool IsValidId(this long id)
+        public static bool IsValidId(this int id)
             => id > 0;
 
         public static bool IsValidString(this string str)

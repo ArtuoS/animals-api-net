@@ -24,7 +24,7 @@ namespace AnimalAPI.BusinessLayer
         {
             try
             {
-                Animal animal = null;
+                Animal animal = new Animal();
                 using (var context = _context)
                 {
                     if (item.Name.IsValidString() || item.Genre.IsValidString())
