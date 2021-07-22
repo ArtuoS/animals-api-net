@@ -29,7 +29,11 @@ namespace AnimalAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
-            return await _context.Animals.ToListAsync();
+            var animals = await _animalBll.GetAll();
+
+            if (animals.Data.Any())
+                return new JsonResult(animals.Data);
+            return BadRequest();
         }
 
         // GET: api/Animals/5
