@@ -4,6 +4,7 @@ using AnimalAPI.Common;
 using AnimalAPI.Common.Interfaces;
 using AnimalAPI.Entities;
 using AnimalAPI.Models;
+using AnimalAPI.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +37,7 @@ namespace AnimalAPI
             services.AddDbContext<AnimalContext>(opt => opt.UseInMemoryDatabase(databaseName: "animal_db"));
 
             services.AddTransient<IAnimalBll, AnimalBll>();
+            services.AddTransient<IAnimal, Animal>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

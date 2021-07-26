@@ -29,10 +29,13 @@ namespace AnimalAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
-            var animals = await _animalBll.GetAll();
+            var response = await _animalBll.GetAll();
 
-            if (animals.Data.Any())
-                return new JsonResult(animals.Data);
+            if (response.Data.Any())
+            {
+                return new JsonResult(response.Data);
+            }
+
             return BadRequest();
         }
 
@@ -40,14 +43,14 @@ namespace AnimalAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-            var animal = await _context.Animals.FindAsync(id);
+            var response = await _animalBll.GetById(id);
 
-            if (animal == null)
+            if (response == null)
             {
                 return NotFound();
             }
 
-            return animal;
+            return new JsonResult(response.Data);
         }
 
         // PUT: api/Animals/5
@@ -77,12 +80,14 @@ namespace AnimalAPI.Controllers
                 }
             }
 
+            await _animalBll.Update(id, animal);
+
             return NoContent();
         }
 
         // POST: api/Animals
         [HttpPost]
-        public async Task<ActionResult<Animal>> PostAnimal([FromBody]Animal animal)
+        public async Task<ActionResult<Animal>> PostAnimal([FromBody] Animal animal)
         {
             try
             {
@@ -103,16 +108,14 @@ namespace AnimalAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Animal>> DeleteAnimal(int id)
         {
-            var animal = await _context.Animals.FindAsync(id);
-            if (animal == null)
+            var response = await _animalBll.Delete(id);
+
+            if (!response.Success)
             {
                 return NotFound();
             }
 
-            _context.Animals.Remove(animal);
-            await _context.SaveChangesAsync();
-
-            return animal;
+            return Ok();
         }
 
         private bool AnimalExists(int id)

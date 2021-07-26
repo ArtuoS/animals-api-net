@@ -1,4 +1,5 @@
 ﻿using AnimalAPI.Enumerators;
+using AnimalAPI.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AnimalAPI.Models
 {
-    public class Animal
+    public class Animal : IAnimal
     {
         [Key]
         public int Id { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AnimalAPI.Common;
+using AnimalAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace AnimalAPI.BusinessLayer.Interfaces
         Task<Response<T>> GetById(long id);
         Task<Response<T>> Delete(long id);
         Task<Response<T>> Create(T item);
-        Task<ResponseMany<T>> GetMany(List<T> items);
+        Task<Response<T>> Update(int id, Animal animal);
         Task<ResponseMany<T>> GetAll();
     }
 }
